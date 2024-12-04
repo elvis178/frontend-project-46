@@ -2,7 +2,8 @@
 
 import { Command } from 'commander';
 import path from 'path';
-import parseFile from '../src/parser.js'
+import parseFile from '../src/parser.js';
+import genDiff from '../src/buildDiff.js'
 
 const program = new Command();
 
@@ -19,12 +20,10 @@ program
     const file1Data = parseFile(absolutePath1);
     const file2Data = parseFile(absolutePath2);
 
-    console.log("Contents of file1.json:");
-    console.log(file1Data);
-    console.log("Contents of file2.json:");
-    console.log(file2Data);
+    // Вызов функции genDiff и получение результата
+    const differences = genDiff(file1Data, file2Data);
+    // Вывод результата
+    console.log(differences);
+  }); 
 
-  });
-
-  
 program.parse();
