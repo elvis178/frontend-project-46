@@ -3,5 +3,5 @@
 
 
 ## Examples
-# Finding differences between file1.json and file2.json
+### Finding differences between file1.json and file2.json
 [![asciicast](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw.svg)](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw)
