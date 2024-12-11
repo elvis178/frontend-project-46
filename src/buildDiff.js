@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const genDiff = (data1, data2) => {
+const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1); // Ключи первого объекта
   const keys2 = Object.keys(data2); // Ключи второго объекта
   const keys = _.sortBy(_.union(keys1, keys2)); // Объединяем и сортируем ключи
@@ -23,4 +23,4 @@ const genDiff = (data1, data2) => {
   return `{\n${result.join('\n')}\n}`; // Возвращаем результат
 };
 
-export default genDiff;
+export default buildDiff;
