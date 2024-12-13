@@ -1,27 +1,40 @@
 import _ from 'lodash';
 
-const buildDiff = (data1, data2) => {
-  const keys1 = Object.keys(data1);
-  const keys2 = Object.keys(data2);
-  const keys = _.sortBy(_.union(keys1, keys2)); // Объединяем и сортируем ключи
+const buildDiff = (obj1, obj2) => {
+  const sortedUnicKeys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)));
+  const resultObj = sortedUnicKeys.map((key) => {
+    const value1 = obj1[key];
+    const value2 = obj2[key];
 
-  const result = keys.map((key) => {
-    if (!Object.hasOwn(data1, key)) {
-      // Если ключ отсутствует в data1, значит, он добавлен в data2
-      return `+ ${key}: ${data2[key]}`;
-    } else if (!Object.hasOwn(data2, key)) {
-      // Если ключ отсутствует в data2, значит, он удалён из data2
-      return `- ${key}: ${data1[key]}`;
-    } else if (data1[key] !== data2[key]) {
-      // Если значения ключей отличаются
-      return `- ${key}: ${data1[key]}\n+ ${key}: ${data2[key]}`;
+    // Если ключ отсутствует в obj1, значит он добавлен в obj2
+    if (!Object.hasOwn(obj1, key)) {
+      return { key, value: value2, type: 'added' };
     }
-    // Если значения одинаковы, ключ не изменился
-    return `  ${key}: ${data1[key]}`;
+
+    // Если ключ отсутствует в obj2, значит он удален из obj2
+    if (!Object.hasOwn(obj2, key)) {
+      return { key, value: value1, type: 'deleted' };
+    }
+
+    // Если значения одинаковые, то ключ неизменен
+    if (value1 === value2) {
+      return { key, value: value1, type: 'unchanged' };
+    }
+
+    // Если значения отличаются и оба являются объектами, то вызываем рекурсивно buildDiff
+    if (typeof value1 === 'object' && typeof value2 === 'object') {
+      return { key, value: buildDiff(value1, value2), type: 'hasChild' };
+    }
+
+    // Если значения отличаются, то записываем как измененные
+    return {
+      key,
+      oldValue: value1,
+      value: value2,
+      type: 'changed',
+    };
   });
-
-  return `{\n${result.join('\n')}\n}`;
+  return resultObj;
 };
-
 
 export default buildDiff;
