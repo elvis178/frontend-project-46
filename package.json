@@ -8,6 +8,7 @@
   "main": "bin/gendiff.js",
   "type": "module",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest",
     "start": "node bin/gendiff.js"
   },
