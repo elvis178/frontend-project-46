@@ -14,37 +14,37 @@ env:
 
 jobs:
   build:
-  # Type of machine to run
-  runs-on: ubuntu-lates
+    # Type of machine to run
+    runs-on: ubuntu-latest
   
-  steps:
-    # Checking code from the repository
-    - name: Chackout code
-    - uses: action/checkout@v3
+    steps:
+      # Checking code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Install Node.js
-    - name: Set up Node.js
-      uses: action/satup-node@v3
-      with:
-        node-version: 16
-    
-    # Install dependencies
-    - name: Install dependencies
-      run: make install 
-    
-    # Linting code
-    - name: Run linter
-      run: make lint
+      # Install Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: make install 
+      
+      # Linting code
+      - name: Run linter
+        run: make lint
 
-    # Run test
-    - name: Run tests
-      run: make test
-    
-    # Submit code coverage to CodeClimate
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
-      env: 
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with: 
-        coverageCommand: make test-coverahe
-        debug: true
+      # Run tests
+      - name: Run tests
+        run: make test
+      
+      # Submit code coverage to CodeClimate
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env: 
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with: 
+          coverageCommand: make test-coverage
+          debug: true
