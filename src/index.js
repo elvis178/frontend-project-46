@@ -1,6 +1,6 @@
 import path from 'path'; //resolve
 import process from 'process'; //cwd
-import parseFile from './parser.js';
+import parseFile from './parsers.js';
 import buildDiff from './buildDiff.js';
 import formatDiff from './formatters/index.js';
 
