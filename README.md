@@ -7,3 +7,5 @@
 ### Finding differences between file1.json and file2.json
 [![asciicast](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw.svg)](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw)
 
+### Finding differences between file1.yml and file2.yml
+[![asciicast](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ.svg)](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ)

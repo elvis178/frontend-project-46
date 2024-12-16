@@ -24,3 +24,22 @@ test('genDiff with objects having different keys and values', () => {
   // Сравниваем строки с учётом точного формата
   expect(result).toEqual(expected);
 });
+
+test('Yml Gendiff', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+  
+  const result = genDiff(filepath1, filepath2, 'yml');
+  const expectedFilePath = getFixturePath('expected-yml.txt')
+  fs.writeFileSync(expectedFilePath, result);
+
+  
+  const expected = readFile('expected-yml.txt');
+
+  console.log(result);
+
+  //Для дебага
+  console.log(`Writing to: ${expectedFilePath}`);
+  
+  expect(result).toEqual(expected);
+});
