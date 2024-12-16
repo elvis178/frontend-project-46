@@ -1,13 +1,16 @@
-import stylish from './stylish.js';
+import formatStylish from './stylish.js';
+import yaml from 'yaml';
 
 const formatDiff = (diff, format) => {
   switch (format) {
     case 'stylish':
-      return stylish(diff);
+      return formatStylish(diff);
     case 'json':
       return JSON.stringify(diff, null, '');
+    case 'yml':
+      return yaml.stringify(diff);
     default:
-      throw new Error(`Unknown format: ${format}`);
+      throw new Error(`Unknown format: ${format}. Choose 'json' or 'yml/yaml'`);
   }
 }
 export default formatDiff;
