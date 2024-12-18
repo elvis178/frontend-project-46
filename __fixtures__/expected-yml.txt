@@ -1,16 +1,39 @@
+- key: common
+  value:
+    follow: false
+    setting1: Value 1
+    setting3: null
+    setting4: blah blah
+    setting5:
+      key5: value5
+    setting6:
+      key: value
+      ops: vops
+      doge:
+        wow: so much
+  type: added
 - key: follow
   value: false
   type: deleted
+- key: group1
+  value:
+    foo: bar
+    baz: bars
+    nest: str
+  type: added
+- key: group3
+  value:
+    deep:
+      id:
+        number: 45
+    fee: 100500
+  type: added
 - key: host
   value: hexlet.io
-  type: unchanged
+  type: deleted
 - key: proxy
   value: 123.234.53.22
   type: deleted
 - key: timeout
-  oldValue: 50
-  value: 20
-  type: changed
-- key: verbose
-  value: true
-  type: added
+  value: 50
+  type: deleted
