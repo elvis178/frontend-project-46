@@ -31,14 +31,13 @@ test('Yml Gendiff', () => {
   
   const result = genDiff(filepath1, filepath2, 'yml');
   const expectedFilePath = getFixturePath('expected-yml.txt')
-  fs.writeFileSync(expectedFilePath, result);
+  //fs.writeFileSync(expectedFilePath, result);
 
   
   const expected = readFile('expected-yml.txt');
 
-  console.log(result);
-
   //Для дебага
+  console.log(result);
   console.log(`Writing to: ${expectedFilePath}`);
   
   expect(result).toEqual(expected);
