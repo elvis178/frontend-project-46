@@ -9,3 +9,6 @@
 
 ### Finding differences between file1.yml and file2.yml
 [![asciicast](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ.svg)](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ)
+
+### Stylish -format. Finding differences between file1.json and file2.json (nested structures)
+[![asciicast](https://asciinema.org/a/g0cR0QBJhhM3cMYCQ4SGIi2Ac.svg)](https://asciinema.org/a/g0cR0QBJhhM3cMYCQ4SGIi2Ac)
