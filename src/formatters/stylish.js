@@ -2,18 +2,18 @@ import _ from 'lodash';
 
 const replacer = '    ';
 
-const formatValue = (data, depth) => {
+const stringify = (data, depth) => {
   if (!_.isObject(data)) {
     return `${data}`;
   }
 
   const currentReplacer = replacer.repeat(depth);
   const entries = Object.entries(data);
-  const strings = entries.map(([key, value]) => `${currentReplacer}    ${key}: ${formatValue(value, depth + 1)}`);
+  const strings = entries.map(([key, value]) => `${currentReplacer}    ${key}: ${stringify(value, depth + 1)}`);
   return `{\n${strings.join('\n')}\n${currentReplacer}}`;
 };
 
-const formatStylish = (data) => {
+const getStylishFormat = (data) => {
   const iter = (obj, depth) => {
     const currentReplacer = replacer.repeat(depth);
     const result = obj.flatMap((node) => {
@@ -22,17 +22,17 @@ const formatStylish = (data) => {
       } = node;
       switch (type) {
         case 'added':
-          return `${currentReplacer}  + ${key}: ${formatValue(value, depth + 1)}`;
+          return `${currentReplacer}  + ${key}: ${stringify(value, depth + 1)}`;
         case 'deleted':
-          return `${currentReplacer}  - ${key}: ${formatValue(value, depth + 1)}`;
+          return `${currentReplacer}  - ${key}: ${stringify(value, depth + 1)}`;
         case 'unchanged':
-          return `${currentReplacer}    ${key}: ${formatValue(value, depth + 1)}`;
+          return `${currentReplacer}    ${key}: ${stringify(value, depth + 1)}`;
         case 'changed':
-          return `${currentReplacer}  - ${key}: ${formatValue(oldValue, depth + 1)}\n${currentReplacer}  + ${key}: ${formatValue(value, depth + 1)}`;
+          return `${currentReplacer}  - ${key}: ${stringify(oldValue, depth + 1)}\n${currentReplacer}  + ${key}: ${stringify(value, depth + 1)}`;
         case 'hasChild':
           return `${currentReplacer}    ${key}: ${iter(value, depth + 1)}`;
         default:
-          throw new Error('something wrong');
+          throw new Error('Something wrong');
       }
     });
     return `{\n${result.join('\n')}\n${currentReplacer}}`;
@@ -40,4 +40,4 @@ const formatStylish = (data) => {
   return iter(data, 0);
 };
 
-export default formatStylish;
+export default getStylishFormat;
