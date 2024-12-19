@@ -10,5 +10,11 @@
 ### Finding differences between file1.yml and file2.yml
 [![asciicast](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ.svg)](https://asciinema.org/a/lsqCc5hHix2U4VwkEyvE2CIuQ)
 
-### Stylish -format. Finding differences between file1.json and file2.json (nested structures)
+### Stylish-format(default format). Finding differences between file1.json and file2.json (nested structures)
 [![asciicast](https://asciinema.org/a/g0cR0QBJhhM3cMYCQ4SGIi2Ac.svg)](https://asciinema.org/a/g0cR0QBJhhM3cMYCQ4SGIi2Ac)
+
+### Plain-format. Finding differences between file1.json and file2.json (nested structures)
+[![asciicast](https://asciinema.org/a/PZ9GV3Qdvjt9R7aLaN5RLJVqY.svg)](https://asciinema.org/a/PZ9GV3Qdvjt9R7aLaN5RLJVqY)
+
+### Json-format. Finding differences between file1.json and file2.json (nested structures)
+[![asciicast](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI.svg)](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI)
