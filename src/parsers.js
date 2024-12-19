@@ -14,7 +14,7 @@ const parseFile = (filePath) => {
   if (fileExtension === 'yml' || fileExtension === 'yaml') {
     return yaml.parse(fileData);
   }
-  throw new Error(`Unsupported file format: ${fileExtension} (ಡ‸ಡ)`);
+  throw new Error(`Unsupported file format: ${fileExtension}`);
 };
 
 export default parseFile;
