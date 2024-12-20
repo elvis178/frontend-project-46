@@ -24,7 +24,6 @@ test('Json Gendiff, stylish-format', () => {
 test('Yml Gendiff, stylish-format', () => {
   const filepath1 = getFixturePath('file1.yml');
   const filepath2 = getFixturePath('file2.yml');
-  
   const result = genDiff(filepath1, filepath2, 'stylish');
 
   const expected = readFile('expected-stylish.txt');
