@@ -18,7 +18,6 @@ test('Json Gendiff, stylish-format', () => {
 
   // Для дебага
   console.log(result);
-  
   expect(result).toEqual(expected);
 });
 
@@ -32,7 +31,6 @@ test('Yml Gendiff, stylish-format', () => {
 
   // Для дебага
   console.log(result);
-  
   expect(result).toEqual(expected);
 });
 
@@ -59,4 +57,3 @@ test('Json gendiff, json-format', () => {
 
   expect(result).toEqual(expected);
 });
-
