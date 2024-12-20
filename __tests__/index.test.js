@@ -10,13 +10,10 @@ const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-
 test('Json Gendiff, stylish-format', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
   const result = genDiff(filepath1, filepath2, 'stylish');
- // const expectedFilePath = getFixturePath('expected-stylish.txt');
- // fs.writeFileSync(expectedFilePath, result);
   const expected = readFile('expected-stylish.txt');
 
   // Для дебага
@@ -30,8 +27,6 @@ test('Yml Gendiff, stylish-format', () => {
   const filepath2 = getFixturePath('file2.yml');
   
   const result = genDiff(filepath1, filepath2, 'stylish');
-  //const expectedFilePath = getFixturePath('expected-stylish.txt');
-  //fs.writeFileSync(expectedFilePath, result);
 
   const expected = readFile('expected-stylish.txt');
 
@@ -64,3 +59,4 @@ test('Json gendiff, json-format', () => {
 
   expect(result).toEqual(expected);
 });
+
