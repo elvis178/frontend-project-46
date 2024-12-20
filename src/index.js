@@ -4,9 +4,6 @@ import parseFile from './parsers.js';
 import buildDiff from './buildDiff.js';
 import formatDiff from './formatters/index.js';
 
-
-
-
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const absolutePath1 = path.resolve(process.cwd(), filepath1);
   const absolutePath2 = path.resolve(process.cwd(), filepath2);
@@ -20,4 +17,3 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
 };
 
 export default genDiff;
-
