@@ -16,7 +16,6 @@ test('Json Gendiff, stylish-format', () => {
   const result = genDiff(filepath1, filepath2, 'stylish');
   const expectedFilePath = getFixturePath('expected-stylish.txt');
   fs.writeFileSync(expectedFilePath, result);
-  
   const expected = readFile('expected-stylish.txt');
 
   // Для дебага
@@ -46,7 +45,6 @@ test('Plain gendiff, plain-format', () => {
   const result = genDiff(filepath1, filepath2, 'plain');
   const expectedFilePath = getFixturePath('expected-plain.txt');
   fs.writeFileSync(expectedFilePath, result);
-  
   const expected = readFile('expected-plain.txt');
 
   // Для дебага
