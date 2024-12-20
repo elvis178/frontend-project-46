@@ -27,7 +27,7 @@ const getPlainformat = (data) => {
         case 'unchanged':
           return [];
         default:
-          throw new Error('Something wrong');
+          throw new Error(`Unknown type `);
       }
     });
     return strings.filter((item) => item !== undefined).join('\n');
