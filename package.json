@@ -5,11 +5,11 @@
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
-  "main": "bin/gendiff.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "test": " npx jest",
+    "test": "npx jest",
     "start": "node bin/gendiff.js"
   },
   "author": "elvisss",
