@@ -18,3 +18,6 @@
 
 ### Json-format. Finding differences between file1.json and file2.json (nested structures)
 [![asciicast](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI.svg)](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI)
+
+### Help and version
+[![asciicast](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB.svg)](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB)
