@@ -18,6 +18,24 @@ make install
 ``` 
 npm link
 ```
+
+## Usage
+### To get help
+```
+gendiff -h
+```
+### To see version
+``` 
+gendiff -v
+```
+### To compare two files
+```
+gendiff <filepath1> <filepath2>
+```
+### Choosing the output format
+```
+gendiff --format plain/json <filepath1> <filepath2>
+```
 ## Examples
 ### Help and version
 [![asciicast](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB.svg)](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB)
