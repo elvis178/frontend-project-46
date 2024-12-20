@@ -1,9 +1,13 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/elvis178/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/elvis178/frontend-project-46/actions)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/771ca4408f4f6129d234/test_coverage)](https://codeclimate.com/github/elvis178/frontend-project-46/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/771ca4408f4f6129d234/maintainability)](https://codeclimate.com/github/elvis178/frontend-project-46/maintainability)
 
 
 ## Examples
+### Help and version
+[![asciicast](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB.svg)](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB)
+
 ### Finding differences between file1.json and file2.json
 [![asciicast](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw.svg)](https://asciinema.org/a/B2KXMpxMQptBOcTg1yvnJaBmw)
 
@@ -19,5 +23,3 @@
 ### Json-format. Finding differences between file1.json and file2.json (nested structures)
 [![asciicast](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI.svg)](https://asciinema.org/a/EYKUONFP6i3QKV3LDxK00vbFI)
 
-### Help and version
-[![asciicast](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB.svg)](https://asciinema.org/a/6JzFWUJ1O95PbsjEiiPNjJrNB)
