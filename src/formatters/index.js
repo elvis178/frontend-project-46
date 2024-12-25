@@ -10,7 +10,7 @@ const formatDiff = (diff, format) => {
     case 'plain':
       return getPlainformat(diff);
     default:
-      throw new Error(`Unknown format: ${format} (ಡ‸ಡ). Choose 'json', 'plain' or 'stylish'`);
+      throw new Error(`Unknown format: ${format}. Choose 'json', 'plain' or 'stylish'`);
   }
 };
 export default formatDiff;
