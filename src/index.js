@@ -3,17 +3,24 @@ import process from 'process';
 import parseFile from './parsers.js';
 import buildDiff from './buildDiff.js';
 import formatDiff from './formatters/index.js';
+import fs from 'fs';
+
+const readFileContent = (filepath) => {
+  const currentDirectory = process.cwd();
+  const absoluteFilePath = path.resolve(currentDirectory, filepath);
+  return fs.readFileSync(absoluteFilePath, 'utf-8');
+};
+
+const fileExtension = (filepath) => path.extname(filepath).slice(1).toLowerCase();
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const absolutePath1 = path.resolve(process.cwd(), filepath1);
-  const absolutePath2 = path.resolve(process.cwd(), filepath2);
-
-  const file1Data = parseFile(absolutePath1);
-  const file2Data = parseFile(absolutePath2);
-
-  const diffFree = buildDiff(file1Data, file2Data);
-
-  return formatDiff(diffFree, format);
+  const content1 = readFileContent(filepath1);
+  const content2 = readFileContent(filepath2);
+  const parsedFile1 = parseFile(fileExtension(filepath1), content1);
+  const parsedFile2= parseFile(fileExtension(filepath2), content2);
+  const diffTree = buildDiff(parsedFile1, parsedFile2);
+  return formatDiff(diffTree, format);
 };
 
 export default genDiff;
+
