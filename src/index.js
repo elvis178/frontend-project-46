@@ -5,7 +5,6 @@ import parseFile from './parsers.js';
 import buildDiff from './buildDiff.js';
 import formatDiff from './formatters/index.js';
 
-
 const readFileContent = (filepath) => {
   const currentDirectory = process.cwd();
   const absoluteFilePath = path.resolve(currentDirectory, filepath);
@@ -24,4 +23,3 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
 };
 
 export default genDiff;
-
