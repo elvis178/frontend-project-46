@@ -1,36 +1,35 @@
 import _ from 'lodash';
 
 const buildDiff = (obj1, obj2) => {
-  const sortedUnicKeys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)));
+  const keys1 = _.keys(obj1);
+  const keys2 = _.keys(obj2);
+  const sortedUnicKeys = _.sortBy(_.union(keys1, keys2));
+
   const resultObj = sortedUnicKeys.map((key) => {
-    const value1 = obj1[key];
-    const value2 = obj2[key];
 
     // Если ключ отсутствует в obj1, значит он добавлен в obj2
     if (!Object.hasOwn(obj1, key)) {
-      return { key, value: value2, type: 'added' };
+      return { key, value: obj2[key], type: 'added' };
     }
 
     // Если ключ отсутствует в obj2, значит он удален из obj2
     if (!Object.hasOwn(obj2, key)) {
-      return { key, value: value1, type: 'deleted' };
+      return { key, value: obj1[key], type: 'deleted' };
     }
 
     // Если значения одинаковые, то ключ неизменен
-    if (value1 === value2) {
-      return { key, value: value1, type: 'unchanged' };
+    if (_.isEqual(obj1[key], obj2[key])) {
+      return { key, value: obj1[key], type: 'unchanged' };
     }
 
-    // Если значения отличаются и оба являются объектами, то вызываем рекурсивно buildDiff
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
-      return { key, value: buildDiff(value1, value2), type: 'hasChild' };
+    // Если значения отличаются и оба являются простыми объектами, то вызываем рекурсивно buildDiff
+    if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
+      return { key, children: buildDiff(obj1[key], obj2[key]), type: 'nested' };
     }
-
-    // Если значения отличаются, то записываем как измененные
     return {
       key,
-      oldValue: value1,
-      value: value2,
+      value: obj1[key],
+      value2: obj2[key],
       type: 'changed',
     };
   });
