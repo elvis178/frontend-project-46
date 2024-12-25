@@ -6,7 +6,6 @@ const buildDiff = (obj1, obj2) => {
   const sortedUnicKeys = _.sortBy(_.union(keys1, keys2));
 
   const resultObj = sortedUnicKeys.map((key) => {
-
     // Если ключ отсутствует в obj1, значит он добавлен в obj2
     if (!Object.hasOwn(obj1, key)) {
       return { key, value: obj2[key], type: 'added' };

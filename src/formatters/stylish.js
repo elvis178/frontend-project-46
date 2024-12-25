@@ -15,7 +15,7 @@ const stringify = (value, depth = 1) => {
   }
   const keys = Object.keys(value);
   const formattedKeys = keys.map(
-    (key) => `${createIndent(depth + 1)}  ${key}: ${stringify(value[key], depth + 1)}`
+    (key) => `${createIndent(depth + 1)}  ${key}: ${stringify(value[key], depth + 1)}`,
   );
   return `{\n${formattedKeys.join('\n')}\n  ${createIndent(depth)}}`;
 };

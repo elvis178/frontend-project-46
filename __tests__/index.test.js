@@ -30,5 +30,5 @@ test.each(testCases)(
     console.log(result);
 
     expect(result).toEqual(expected);
-  }
+  },
 );
