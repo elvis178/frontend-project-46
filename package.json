@@ -16,7 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^12.1.0",
-    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "yaml": "^2.6.1"
   },
