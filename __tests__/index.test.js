@@ -10,57 +10,25 @@ const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-test('Json Gendiff, stylish-format', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-  const result = genDiff(filepath1, filepath2, 'stylish');
-  const expectedFilePath = getFixturePath('expected-stylish.txt');
-  fs.writeFileSync(expectedFilePath, result);
-  const expected = readFile('expected-stylish.txt');
+// Массив с тестовыми кейсами
+const testCases = [
+  ['file1.json', 'file2.json', 'stylish', 'expected-stylish.txt'],
+  ['file1.yml', 'file2.yml', 'stylish', 'expected-stylish.txt'],
+  ['file1.json', 'file2.json', 'plain', 'expected-plain.txt'],
+  ['file1.json', 'file2.json', 'json', 'expected-json.txt'],
+];
 
-  // Для дебага
-  console.log(result);
+test.each(testCases)(
+  'gendiff between %s and %s files in %s format',
+  (file1, file2, format, expectedFile) => {
+    const filepath1 = getFixturePath(file1);
+    const filepath2 = getFixturePath(file2);
+    const result = genDiff(filepath1, filepath2, format);
+    const expected = readFile(expectedFile);
 
-  expect(result).toEqual(expected);
-});
+    // Для дебага
+    console.log(result);
 
-test('Yml Gendiff, stylish-format', () => {
-  const filepath1 = getFixturePath('file1.yml');
-  const filepath2 = getFixturePath('file2.yml');
-  const result = genDiff(filepath1, filepath2, 'stylish');
-  const expectedFilePath = getFixturePath('expected-stylish.txt');
-  fs.writeFileSync(expectedFilePath, result);
-
-  const expected = readFile('expected-stylish.txt');
-
-  // Для дебага
-  console.log(result);
-
-  expect(result).toEqual(expected);
-});
-
-test('Plain gendiff, plain-format', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-  const result = genDiff(filepath1, filepath2, 'plain');
-  const expectedFilePath = getFixturePath('expected-plain.txt');
-  fs.writeFileSync(expectedFilePath, result);
-  const expected = readFile('expected-plain.txt');
-
-  // Для дебага
-  console.log(result);
-
-  expect(result).toEqual(expected);
-});
-
-test('Json gendiff, json-format', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-  const expected = readFile('expected-json.txt');
-  const result = genDiff(filepath1, filepath2, 'json');
-
-  // Для дебага
-  console.log(result);
-
-  expect(result).toEqual(expected);
-});
+    expect(result).toEqual(expected);
+  }
+);
