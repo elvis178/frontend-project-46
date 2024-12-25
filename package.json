@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/elvis178/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/elvis178/frontend-project-46/actions)",
+  "description": "Gendiff is a command-line tool to compare two files (JSON/YML) and display differences in stylish, plain, or JSON format",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
