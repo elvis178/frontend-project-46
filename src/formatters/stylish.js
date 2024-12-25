@@ -1,43 +1,43 @@
 import _ from 'lodash';
 
-const replacer = '    ';
+const signs = {
+  added: '+',
+  deleted: '-',
+  unchanged: ' ',
+  nested: ' ',
+};
 
-const stringify = (data, depth) => {
-  if (!_.isObject(data)) {
-    return `${data}`;
+const createIndent = (depth) => ' '.repeat(depth * 4 - 2);
+
+const stringify = (value, depth = 1) => {
+  if (!_.isObject(value)) {
+    return value;
   }
-
-  const currentReplacer = replacer.repeat(depth);
-  const entries = Object.entries(data);
-  const strings = entries.map(([key, value]) => `${currentReplacer}    ${key}: ${stringify(value, depth + 1)}`);
-  return `{\n${strings.join('\n')}\n${currentReplacer}}`;
+  const keys = Object.keys(value);
+  const formattedKeys = keys.map(
+    (key) => `${createIndent(depth + 1)}  ${key}: ${stringify(value[key], depth + 1)}`
+  );
+  return `{\n${formattedKeys.join('\n')}\n  ${createIndent(depth)}}`;
 };
 
-const getStylishFormat = (data) => {
-  const iter = (obj, depth) => {
-    const currentReplacer = replacer.repeat(depth);
-    const result = obj.flatMap((node) => {
-      const {
-        key, oldValue, value, type,
-      } = node;
-      switch (type) {
-        case 'added':
-          return `${currentReplacer}  + ${key}: ${stringify(value, depth + 1)}`;
-        case 'deleted':
-          return `${currentReplacer}  - ${key}: ${stringify(value, depth + 1)}`;
-        case 'unchanged':
-          return `${currentReplacer}    ${key}: ${stringify(value, depth + 1)}`;
-        case 'changed':
-          return `${currentReplacer}  - ${key}: ${stringify(oldValue, depth + 1)}\n${currentReplacer}  + ${key}: ${stringify(value, depth + 1)}`;
-        case 'hasChild':
-          return `${currentReplacer}    ${key}: ${iter(value, depth + 1)}`;
-        default:
-          throw new Error('Something wrong');
-      }
-    });
-    return `{\n${result.join('\n')}\n${currentReplacer}}`;
-  };
-  return iter(data, 0);
+const getStylishFormat = (item, depth = 1) => {
+  switch (item.type) {
+    case 'added':
+    case 'deleted':
+    case 'unchanged':
+      return `${createIndent(depth)}${signs[item.type]} ${item.key}: ${stringify(item.value, depth)}`;
+    case 'changed':
+      return `${createIndent(depth)}${signs.deleted} ${item.key}: ${stringify(item.value, depth)}\n${createIndent(depth)}${signs.added} ${item.key}: ${stringify(item.value2, depth)}`;
+    case 'nested':
+      return `${createIndent(depth)}  ${item.key}: {\n${item.children
+        .map((child) => getStylishFormat(child, depth + 1))
+        .join('\n')}\n ${createIndent(depth)} }`;
+    default:
+      throw new Error(`Unexpected type: ${item.type}`);
+  }
 };
 
-export default getStylishFormat;
+export default (changes) => {
+  const formattedChanges = changes.map((change) => getStylishFormat(change, 1));
+  return `{\n${formattedChanges.join('\n')}\n}`;
+};
