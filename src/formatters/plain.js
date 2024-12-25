@@ -7,32 +7,31 @@ const stringify = (data) => {
   return typeof data === 'string' ? `'${data}'` : data;
 };
 
-const getPlainformat = (data) => {
-  const iter = (obj, path) => {
-    const values = Object.values(obj);
-    const strings = values.flatMap((node) => {
-      const {
-        key, oldValue, value, type,
-      } = node;
-      const newPath = path === '' ? `${key}` : `${path}.${key}`;
-      switch (type) {
-        case 'added':
-          return `Property '${newPath}' was added with value: ${stringify(value)}`;
-        case 'deleted':
-          return `Property '${newPath}' was removed`;
-        case 'changed':
-          return `Property '${newPath}' was updated. From ${stringify(oldValue)} to ${stringify(value)}`;
-        case 'hasChild':
-          return iter(value, newPath);
-        case 'unchanged':
-          return [];
-        default:
-          throw new Error('Unknown type');
-      }
-    });
-    return strings.filter((item) => item !== undefined).join('\n');
-  };
-  return iter(data, '');
+const getPlainFormat = (value, parent = '') => {
+  switch (value.type) {
+    case 'added':
+      return `Property '${parent}${value.key}' was added with value: ${stringify(value.value)}`;
+    case 'deleted':
+      return `Property '${parent}${value.key}' was removed`;
+    case 'unchanged':
+      return null;
+    case 'nested':
+      return value.children.map((val) => getPlainFormat(val, `${parent + value.key}.`))
+        .filter((item) => item !== null).join('\n');
+    case 'changed':
+      return `Property '${parent}${value.key}' was updated. From ${stringify(value.value)} to ${stringify(value.value2)}`;
+    default:
+      throw new Error(`Unknown type: ${value.type}`);
+  }
 };
 
-export default getPlainformat;
+export default (plain) => {
+  // Применяем форматирование ко всем элементам
+  const formattedElements = plain.map((element) => getPlainFormat(element));
+
+  // Фильтруем null значения
+  const nonNullElements = formattedElements.filter((item) => item !== null);
+
+  // Соединяем все элементы в строку с разделителем новой строки
+  return nonNullElements.join('\n');
+};
