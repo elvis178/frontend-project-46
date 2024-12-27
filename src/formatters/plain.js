@@ -26,12 +26,7 @@ const getPlainFormat = (value, parent = '') => {
 };
 
 export default (plain) => {
-  // Применяем форматирование ко всем элементам
   const formattedElements = plain.map((element) => getPlainFormat(element));
-
-  // Фильтруем null значения
   const nonNullElements = formattedElements.filter((item) => item !== null);
-
-  // Соединяем все элементы в строку с разделителем новой строки
   return nonNullElements.join('\n');
 };
