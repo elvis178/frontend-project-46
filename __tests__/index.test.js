@@ -13,16 +13,16 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 const testCases = [
   ['file1.json', 'file2.json', 'expected-stylish.txt', 'stylish'],
   ['file1.json', 'file2.yml', 'expected-stylish.txt', 'stylish'],
-  ['file1.yml', 'file2.yml', 'expected-stylish.txt', 'stylish',],
+  ['file1.yml', 'file2.yml', 'expected-stylish.txt', 'stylish'],
   ['file1.yml', 'file2.json', 'expected-stylish.txt', 'stylish'],
-  ['file1.json', 'file2.json', 'expected-json.txt', 'json',],
-  ['file1.json', 'file2.yml', 'expected-json.txt', 'json',],
-  ['file1.yml', 'file2.yml', 'expected-json.txt', 'json',],
-  ['file1.yml', 'file2.json', 'expected-json.txt', 'json',],
-  ['file1.json', 'file2.json', 'expected-plain.txt', 'plain',],
-  ['file1.json', 'file2.yml', 'expected-plain.txt', 'plain',],
-  ['file1.yml', 'file2.yml', 'expected-plain.txt', 'plain',],
-  ['file1.yml', 'file2.json', 'expected-plain.txt', 'plain',],
+  ['file1.json', 'file2.json', 'expected-json.txt', 'json'],
+  ['file1.json', 'file2.yml', 'expected-json.txt', 'json'],
+  ['file1.yml', 'file2.yml', 'expected-json.txt', 'json'],
+  ['file1.yml', 'file2.json', 'expected-json.txt', 'json'],
+  ['file1.json', 'file2.json', 'expected-plain.txt', 'plain'],
+  ['file1.json', 'file2.yml', 'expected-plain.txt', 'plain'],
+  ['file1.yml', 'file2.yml', 'expected-plain.txt', 'plain'],
+  ['file1.yml', 'file2.json', 'expected-plain.txt', 'plain'],
 ];
 
 const defaultFormatter = 'stylish';
